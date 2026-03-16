@@ -1,9 +1,10 @@
 import OpenAI from "openai"
 import { NextRequest, NextResponse } from "next/server"
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+export const dynamic = "force-dynamic"
 
 export async function POST(req: NextRequest) {
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
   const { service_type, notes, customer_name, address } = await req.json()
 
   const prompt = `You are an expert plumbing service AI assistant helping a technician write resolution notes for a completed job. Based on the job details below, generate a concise recommended resolution summary AND determine if a follow-up visit is likely needed.
